@@ -1,51 +1,7 @@
 <template>
   <div class="dashboard">
-    <h1>This is an creating stream page</h1>
-    <div class="stream-create">
-       <h1>Настройки</h1>
-       <div class="stream-create__top">
-           <div>
-               <input type="text" v-model="title" >
-               <div>
-                <button @click="show()">Добавить</button>
-                <h4>Нажмите + чтобы добавить товар</h4>
-               </div>
-           </div>
-           <div>
-               <button @click="start()">ЗАПУСКАЙ ПОТОК</button>
-           </div>
-       </div>
-       <div class="stream-create__bot">
-           <button>left</button>
-            <template v-for="(item, index) in products">
-                <Product :name="item.name" :price="item.price" :description="item.description" :key="index" />
-            </template>
-           <button>right</button>
-       </div>
-       <modal name="append">
-
-            <div>Перетащите изображение сюда</div>
-                <div>
-                    <input type="text" v-model="name">
-                    <input type="text" v-model="articul">
-                    <div>
-                        <input type="text" v-model="price">
-                        <input type="text">
-                    </div>
-            </div>
-            <input type="text" v-model="description">
-           <button @click="close()">Добавить</button>
-       </modal>
-       <modal name="infoStream">
-           <h1>Stream started!</h1>
-           <h2>{{streamId}}</h2>
-           <h2>{{obsKey}}</h2>
-           <button @click="hideInfo()">close</button>
-       </modal>
-    </div>
-    
-   
-    
+    <h1>Stream is here!!!</h1>
+    <iframe :src="streamTread"  width="100%" height="100%" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
   </div>
 </template>
 
@@ -56,7 +12,7 @@ import axios from 'axios';
 import StreamCard from '@/components/StreamCard.vue';
 import Product from '@/components/Product.vue';
 
-console.log(window.location.href);
+let href =  window.location.href;
 
 @Component({
     components:{
@@ -66,8 +22,19 @@ console.log(window.location.href);
     
 
 })
-export default class Creating extends Vue {
+export default class Stream extends Vue {
 
+    public streamTread = '';
+
+    protected created(){
+
+        let streamid =  href.slice(href.indexOf("=")+1);
+        axios.get("http://192.168.186.19:8855/streams/get?stream="+streamid).then((data) => {
+            this.streamTread = data.data.stream.url;
+            console.log(data);
+        });
+        console.log(streamid);
+    }
     
 
     public products: Array<{}> = [];

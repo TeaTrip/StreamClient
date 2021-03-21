@@ -33,6 +33,11 @@ const routes: Array<RouteConfig> = [
     path: '/creating',
     name: 'Creating',
     component: () => import(/* webpackChunkName: "dashboard" */ '../views/Creating.vue')
+  },
+  {
+    path: '/stream',
+    name: 'Stream',
+    component: () => import(/* webpackChunkName: "dashboard" */ '../views/Stream.vue')
   }
 ]
 

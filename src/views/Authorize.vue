@@ -52,7 +52,7 @@ export default class Authorize extends Vue {
         formData.append("password", this.password);
         formData.set("email", this.login);
         formData.set("password", this.password);
-        axios.post('http://192.168.86.19:8855/user/login', formData);
+        axios.post('http://192.168.186.19:8855/user/login', formData);
         
 
     }
