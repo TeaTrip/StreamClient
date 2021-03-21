@@ -18,7 +18,7 @@
        <div class="stream-create__bot">
            <button>left</button>
             <template v-for="(item, index) in products">
-                <Product :name="item.name" :price="item.price" :description="item.description" :key="index" />
+                <Product :name="item.name" :price="item.price" :description="item.description" isOnStream="false" :key="index" />
             </template>
            <button>right</button>
        </div>
@@ -26,19 +26,19 @@
 
             <div>Перетащите изображение сюда</div>
                 <div>
-                    <input type="text" v-model="name">
-                    <input type="text" v-model="articul">
+                    <input type="text" placeholder="Название товара" v-model="name">
+                    <input type="text" placeholder="Артикул" v-model="articul">
                     <div>
-                        <input type="text" v-model="price">
-                        <input type="text">
+                        <input type="text" placeholder="Цена" v-model="price">
+                        <input type="text" placeholde="а тут што">
                     </div>
             </div>
-            <input type="text" v-model="description">
+            <input type="text" placeholder="Описание" v-model="description">
            <button @click="close()">Добавить</button>
        </modal>
        <modal name="infoStream">
            <h1>Stream started!</h1>
-           <h2>{{streamId}}</h2>
+           <h2>http://localhost:8080/#/stream?stream-id={{streamId}}</h2>
            <h2>{{obsKey}}</h2>
            <button @click="hideInfo()">close</button>
        </modal>
@@ -137,7 +137,7 @@ export default class Creating extends Vue {
             }
             console.log(obj)
             console.log(JSON.stringify(obj))
-            axios.post("http://192.168.186.19:8855/streams/create", JSON.stringify(obj))
+            axios.post("http://192.168.193.19:8855/streams/create", JSON.stringify(obj))
                 .then((data) => {
                     this.streamId = data.data.stream_id
                     console.log(data);

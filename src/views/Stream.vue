@@ -1,7 +1,15 @@
 <template>
-  <div class="dashboard">
+  <div class="dashboard" >
     <h1>Stream is here!!!</h1>
     <iframe :src="streamTread"  width="100%" height="100%" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
+    <div class="stream-create__bot">
+        <button>left</button>
+        <template v-for="(item, index) in products">
+            <Product @dobs="dobavit($event)" :name="item.name" :price="item.price" :articul="item.articul" isOnStream="true" :description="item.description" :key="index" />
+        </template>
+        <button>right</button>
+    </div>
+    <button @click="redirect()">КУПИТЬ! {{count}}</button>
   </div>
 </template>
 
@@ -25,17 +33,34 @@ let href =  window.location.href;
 export default class Stream extends Vue {
 
     public streamTread = '';
+    public count = 0;
+    public articules: Array<string> = ['24-WB02', 'MH12'];
 
     protected created(){
 
         let streamid =  href.slice(href.indexOf("=")+1);
-        axios.get("http://192.168.186.19:8855/streams/get?stream="+streamid).then((data) => {
+        axios.get("http://192.168.193.19:8855/streams/get?stream="+streamid).then((data) => {
             this.streamTread = data.data.stream.url;
-            console.log(data);
+            this.products = data.data.goods;
+            console.log(data.data);
         });
         console.log(streamid);
     }
+
+    protected dobavit(articul: string){
+        this.count++;
+        this.articules.push(articul);
+    }
     
+    protected redirect(){
+        let strToRedir = 'https://hackathon.oggettoweb.com/checkout/cart/addmultiple/products/'
+        for(let artic of this.articules){
+            strToRedir = strToRedir + artic + ','
+        }
+        strToRedir = strToRedir.slice(0, -1)
+        strToRedir = strToRedir + '/flush_cart/1'
+        window.location.href = strToRedir;
+    }
 
     public products: Array<{}> = [];
     public title = '';
@@ -104,7 +129,7 @@ export default class Stream extends Vue {
             }
             console.log(obj)
             console.log(JSON.stringify(obj))
-            axios.post("http://192.168.186.19:8855/streams/create", JSON.stringify(obj))
+            axios.post("http://192.168.193.19:8855/streams/create", JSON.stringify(obj))
                 .then((data) => {
                     this.streamId = data.data.stream_id
                     console.log(data);

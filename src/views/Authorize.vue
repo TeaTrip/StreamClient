@@ -20,9 +20,6 @@
     <input type="password" placeholder="6+characters" v-model="password">
     </form>
     </div>
-
-
-
     <button @click="go()">login</button>
     <router-link to="/dashboard">dashboard</router-link>
   </div>
@@ -45,14 +42,20 @@ export default class Authorize extends Vue {
     protected go(){
         this.$store.dispatch('setLogin', this.login);
         this.$store.dispatch('setPassword', this.password);
-        axios.defaults.xsrfCookieName = 'csrftoken';
-        axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-        let formData = new FormData();
-        formData.append("email", this.login);
-        formData.append("password", this.password);
-        formData.set("email", this.login);
-        formData.set("password", this.password);
-        axios.post('http://192.168.186.19:8855/user/login', formData);
+        if (this.isSign){
+          axios.post('http://192.168.193.19:8855/auth/users', {email: this.login, password: this.password})
+          .then((data) => {
+            this.$store.dispatch('setToken', data.data.auth_token)
+            this.$router.push('/dashboard')
+          });
+        }
+        else{
+          axios.post('http://192.168.193.19:8855/auth/users/login', {email: this.login, password: this.password})
+          .then((data) => {
+            this.$store.dispatch('setToken', data.data.auth_token)
+            this.$router.push('/dashboard')
+          });
+        }
         
 
     }

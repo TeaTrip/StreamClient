@@ -5,6 +5,7 @@
       <span>{{name}}</span>
       <span>{{description}}</span>
       <div>{{price}}</div>
+      <button v-if="isOnStream" @click="$emit('dobs', articul)" >Добавить в корзину</button>
   </div>
 </template>
 
@@ -16,6 +17,8 @@ export default class Product extends Vue {
   @Prop() private name!: string;
   @Prop() private description!: string;
   @Prop() private price!: number;
+  @Prop() private isOnStream!: boolean;
+  @Prop() private articul!: string;
 
 }
 </script>

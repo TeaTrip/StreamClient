@@ -6,7 +6,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     login: "",
-    password: ""
+    password: "",
+    token: ""
+
   },
   mutations: {
     mutLogin(state, login){
@@ -14,6 +16,9 @@ export default new Vuex.Store({
     },
     mutPassword(state, password){
       state.password = password;
+    },
+    mutToken(state, token){
+      state.token = token;
     }
   },
   actions: { 
@@ -22,6 +27,9 @@ export default new Vuex.Store({
     },
     setPassword(context,payload){
       context.commit('mutPassword', payload)
+    },
+    setToken(context,payload){
+      context.commit('mutToken', payload)
     }
 
   },

@@ -18,7 +18,7 @@
                 <button></button>
             </div>
             <template v-for="(item, index) in cards">
-                <StreamCard :num="item.id" :date="item.date" :title="item.title" :key="index"/>
+                <StreamCard :num="item.num" :date="item.date" :title="item.title" :key="index"/>
             </template>
             <div class="streams__right-button">
                 <button></button>
@@ -71,8 +71,15 @@ export default class Authorize extends Vue {
     protected created(){
         axios.defaults.xsrfCookieName = document.cookie;
         axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-        axios.get('http://192.168.206.19:8855/streams/?token=123')
+        axios.get('http://192.168.193.19:8855/streams/?token='+this.$store.state.token)
         .then((data) => {
+            for(let item of data.data){
+                this.cards.push({
+                    num: item.id,
+                    date: item.date,
+                    title: item.title
+                })
+            }
             console.log(data);
         });
         console.log('this is')

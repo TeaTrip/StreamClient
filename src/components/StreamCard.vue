@@ -1,10 +1,12 @@
 <template>
   <div class="stream-card">
-      <span>#{{num}} стрим</span>
+      <span>#{{num}}</span>
+      <br>
       <span>{{date}}</span>
       <img src="" alt="">
       <hr>
       <div>{{title}}</div>
+      <a :href="'http://localhost:8080/#/stream?stream-id=' + num">go to stream</a>
   </div>
 </template>
 
