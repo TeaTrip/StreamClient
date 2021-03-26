@@ -1,12 +1,11 @@
 <template>
   <div class="dashboard">
     <div class="stream-create">
-       <h1>Настройки</h1>
        <div class="stream-create__top">
            <div>
-               <input type="text" v-model="title" >
+               <input type="text" placeholder="введите название трансляции" v-model="title" >
                <div>
-                <button @click="show()">Добавить</button>
+                <button @click="show()" >Добавить</button>
                 <h4>Нажмите + чтобы добавить товар</h4>
                </div>
            </div>
@@ -43,10 +42,13 @@
        </modal>
     </div>
 
-    <div id="polygon"></div>
-    <div id="vector"></div>
     <div id="ellipse"></div>
-    
+    <div id="polygon"></div>
+    <div id="zag1"></div>
+    <div id="zag2"></div>
+    <div id="sett">НАСТРОЙКИ</div>
+    <div id="strt">СТАРТ</div>
+
   </div>
 </template>
 
@@ -81,6 +83,7 @@ export default class Creating extends Vue {
     public obsKey = '';
 
     protected show(){
+        console.log("что нибудь")
         this.$modal.show('append')
     }
 
@@ -168,79 +171,104 @@ background-size: cover;
 -o-background-size: cover;
 background-position: center center;
 background-repeat: no-repeat;
-background-image: url('../assets/shablon.png');
+// background-image: url('../assets/shablon.png');
+}
+
+input[type="text"] {
+display: inline-block;
+width: 480px;
+height: 45px;
+position: relative;
+line-height: 45px;
+border: 1px solid rgb(156, 71, 152);
+border-radius: 30px;
+background: white;
+padding: 10px 25px;
+color: rgb(82, 82, 82);
+font-size: 15px;
+top: 175px;
+left: -345px;
+outline:none;
+
+  font-family: "CeraPro-Regular";
+  -webkit-font-smoothing: "CeraPro-Regular";
+  -moz-osx-font-smoothing: "CeraPro-Regular";
+  font-size: 20px;
+}
+
+#zag1{
+position: absolute;
+width: 450px;
+height: 85px;
+left: 70px;
+top: 30px;
+background: rgba(255, 237, 156, 0.884);
+backdrop-filter: blur(40px);
+border-radius: 71px;
+transform: rotate(-5deg);
+}
+
+#zag2{
+position: absolute;
+width: 430px;
+height: 90px;
+left: 130px;
+top: 30px;
+background: rgba(139, 74, 243, 0.3);
+backdrop-filter: blur(15px);
+border-radius: 71px;
 }
 
 #polygon {
-/* Group 30 */
-position: absolute;
-width: 451.85px;
-height: 462.01px;
+position: relative;
 left: 1000px;
-top: 70px;
-// filter: drop-shadow(0px 10px 30px rgba(0, 0, 0, 0.25));
-
-/* Polygon 4 */
-
+top: -100px;
 width: 0;
 height: 0;
-border-top: 50px solid transparent;
-border-left: 100px solid red;
-border-bottom: 50px solid transparent;
-
-// background: rgba(126, 54, 242, 0.37);
-// backdrop-filter: blur(20px);
-// /* Note: backdrop-filter has minimal browser support */
-border-radius: 14px;
-// transform: rotate(70deg);
+border-style: solid;
+border-width: 100px 0 100px 180px;
+border-color: transparent transparent transparent rgba(126, 54, 242, 0.37);
+backdrop-filter: blur(10px);
+// border-radius: 14px;
+transform: rotate(-20deg);
+// box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
-#vector{
-/* Vector 7 */
-position: absolute;
-width: 358px;
-height: 129px;
-left: 1237px;
-top: 316px;
-border: 3px solid #2655FA;
-
-/* Vector 8 */
-position: absolute;
-width: 358px;
-height: 129px;
-left: 1231px;
-top: 309px;
-border: 3px solid #2655FA;
-
-/* Vector 9 */
-position: absolute;
-width: 358px;
-height: 129px;
-left: 1226px;
-top: 303px;
-border: 3px solid #2655FA;
-
-/* Vector 10 */
-position: absolute;
-width: 358px;
-height: 129px;
-left: 1220px;
-top: 296px;
-border: 3px solid #2655FA;
-}
-
-ellipse{
-/* Ellipse 6 */
-position: absolute;
-width: 251px;
-height: 251px;
-// left: 100px;
-// top: 100px;
-
-// background: rgba(255, 210, 0, 0.4);
-background: rgba(42, 172, 59, 0.4);
+#ellipse {
+position: relative;
+width: 190px;
+height: 190px;
+left: 940px;
+top: 160px;
+border-radius: 1000px;
+background: rgba(255, 237, 156, 0.884);
 backdrop-filter: blur(30px);
-/* Note: backdrop-filter has minimal browser support */
+box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
+#sett{
+  font-family: "CeraPro-Black";
+  -webkit-font-smoothing: "CeraPro-Black";
+  -moz-osx-font-smoothing: "CeraPro-Black";
+  position: relative;
+  left: -450px;
+  top: -345px;
+  font-size: 50px;
+  color: #7E36F2;
+  text-shadow: -1px -1px #444;
+}
+
+#strt{
+  font-family: "CeraPro-Black";
+  -webkit-font-smoothing: "CeraPro-Black";
+  -moz-osx-font-smoothing: "CeraPro-Black";
+  position: relative;
+  left: 350px;
+  top: -275px;
+  font-size: 40px;
+  transform: rotate(-20deg);
+  color: #7E36F2;
+  text-shadow: -1px -1px #444;
+//   box-shadow: inset 0px -5px 10px 0px rgba(0, 0, 0, 0.5);
+}
 </style>
