@@ -4,7 +4,7 @@
     <h2>Новый взгляд на старые вещи</h2>
     <p>Повышение объема продаж за<br>счет живых рекламных<br>трансляций</p>
     <!-- <a href="" class="button">Button</a> -->
-    <span><router-link to="/authorize">Начать</router-link></span>
+    <span><router-link style="text-decoration: none; color: inherit;" to="/authorize">Начать</router-link></span>
   </div>
 </template>
 
@@ -28,6 +28,7 @@ export default class Start extends Vue {}
   background-position: center center;
   background-repeat: no-repeat;
   background-image: url('../assets/start_bg.png');
+  margin: 0;
   
   h1{
   font-family: "CeraPro-Black";
@@ -36,7 +37,7 @@ export default class Start extends Vue {}
   position: relative;
   text-align: right;
   left: -90px;
-  top: 1px;
+  top: -40px;
   font-size: 130px;
   }
 
@@ -47,7 +48,7 @@ export default class Start extends Vue {}
   position: relative;
   text-align: right;
   left: -180px;
-  top: -125px;
+  top: -165px;
   font-size: 35px;
   }
 
@@ -58,25 +59,25 @@ export default class Start extends Vue {}
   position: relative;
   text-align: left;
   left: 130px;
-  // top: -125px;
+  top: -55px;
   font-size: 35px;
   }
 
   span {
-  text-decoration: none;
   display: inline-block;
   width: 140px;
   height: 45px;
   line-height: 45px;
   border-radius: 45px;
-  margin: 10px 20px;
+  position: relative;
+  top: 90px;
+  bottom: -10px;
   font-family: "CeraPro-Black";
   -webkit-font-smoothing: "CeraPro-Black";
   -moz-osx-font-smoothing: "CeraPro-Black";
   font-size: 20px;
   text-transform: uppercase;
   text-align: center;
-  letter-spacing: 3px;
   font-weight: 600;
   color: #524f4e;
   background: white;
@@ -85,9 +86,9 @@ export default class Start extends Vue {}
 }
   span:hover {
   text-decoration: none;
-  background: #2EE59D;
-  box-shadow: 0 15px 20px rgba(46, 229, 157, .4);
-  color: white;
+  background: #ffffff;
+  box-shadow: 0 15px 20px rgba(87, 87, 87, 0.479);
+  color: rgb(0, 0, 0);
   transform: translateY(-7px);
 }
 }
