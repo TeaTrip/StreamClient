@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard">
-    <h1>This is an creating stream page</h1>
+    <!-- <h1>This is an creating stream page</h1> -->
     <div class="stream-create">
        <h1>Настройки</h1>
        <div class="stream-create__top">

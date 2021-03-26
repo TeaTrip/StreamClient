@@ -1,6 +1,6 @@
 <template>
   <div class="authorize">
-    <h1>This is an authorize page</h1>
+    <h1>This is an authorize</h1>
     <div>
         <img src="" alt="">
         <button @click="isSign = !isSign">sign/in</button>

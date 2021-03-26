@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard">
-    <h1>This is an dashboard page</h1>
+    <!-- s -->
     <div>
         <div>
             <img src="" alt="">
