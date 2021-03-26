@@ -2,7 +2,7 @@
   <div class="authorize">
     <div id="windww">
       <div id="windw">
-        <h1>User Story</h1>
+        <h1 class="h1s">User Story</h1>
         <div>
             <img src="" alt="">
             <button class="in" @click="isSign = !isSign">sign/in</button>
@@ -25,8 +25,7 @@
 
       </div>
     </div>
-    <!-- <button @click="go()">login</button> -->
-    <span><router-link tag="ssil" to="/dashboard">войти</router-link></span>
+    <router-link class="rout" tag="ssil" to="/dashboard">войти</router-link>
   </div>
 </template>
 
@@ -120,11 +119,11 @@ export default class Authorize extends Vue {
     }
 }
 
-span {
+.rout {
   display: inline-block;
   width: 140px;
-  height: 45px;
-  line-height: 45px;
+  height: 50px;
+  line-height: 50px;
   border-radius: 45px;
   position: relative;
   bottom: 100px;
@@ -140,7 +139,7 @@ span {
   box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
   transition: .3s;
 }
-span:hover {
+.rout:hover {
   text-decoration: none;
   background: #ffffff;
   box-shadow: 0 15px 20px rgba(87, 87, 87, 0.479);
@@ -195,7 +194,7 @@ backdrop-filter: blur(5px);
 border-radius: 70px;
 }
 
-h1{
+.h1s{
   font-family: "CeraPro-Black";
   -webkit-font-smoothing: "CeraPro-Black";
   -moz-osx-font-smoothing: "CeraPro-Black";
