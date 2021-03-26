@@ -65,8 +65,8 @@ export default class Start extends Vue {}
   .rou {
   display: inline-block;
   width: 140px;
-  height: 45px;
-  line-height: 45px;
+  height: 50px;
+  line-height: 50px;
   border-radius: 45px;
   position: relative;
   top: 90px;

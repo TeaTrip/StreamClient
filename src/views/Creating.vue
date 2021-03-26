@@ -1,6 +1,5 @@
 <template>
   <div class="dashboard">
-    <!-- <h1>This is an creating stream page</h1> -->
     <div class="stream-create">
        <h1>Настройки</h1>
        <div class="stream-create__top">
@@ -43,8 +42,10 @@
            <button @click="hideInfo()">close</button>
        </modal>
     </div>
-    
-   
+
+    <div id="polygon"></div>
+    <div id="vector"></div>
+    <div id="ellipse"></div>
     
   </div>
 </template>
@@ -157,6 +158,89 @@ export default class Creating extends Vue {
         display: flex;
         justify-content: space-around;
     }
-    
+position: absolute;
+width:100vw;
+height:100vh;
+object-fit:cover;
+background-size: cover;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-position: center center;
+background-repeat: no-repeat;
+background-image: url('../assets/shablon.png');
 }
+
+#polygon {
+/* Group 30 */
+position: absolute;
+width: 451.85px;
+height: 462.01px;
+left: 1000px;
+top: 70px;
+// filter: drop-shadow(0px 10px 30px rgba(0, 0, 0, 0.25));
+
+/* Polygon 4 */
+
+width: 0;
+height: 0;
+border-top: 50px solid transparent;
+border-left: 100px solid red;
+border-bottom: 50px solid transparent;
+
+// background: rgba(126, 54, 242, 0.37);
+// backdrop-filter: blur(20px);
+// /* Note: backdrop-filter has minimal browser support */
+border-radius: 14px;
+// transform: rotate(70deg);
+}
+
+#vector{
+/* Vector 7 */
+position: absolute;
+width: 358px;
+height: 129px;
+left: 1237px;
+top: 316px;
+border: 3px solid #2655FA;
+
+/* Vector 8 */
+position: absolute;
+width: 358px;
+height: 129px;
+left: 1231px;
+top: 309px;
+border: 3px solid #2655FA;
+
+/* Vector 9 */
+position: absolute;
+width: 358px;
+height: 129px;
+left: 1226px;
+top: 303px;
+border: 3px solid #2655FA;
+
+/* Vector 10 */
+position: absolute;
+width: 358px;
+height: 129px;
+left: 1220px;
+top: 296px;
+border: 3px solid #2655FA;
+}
+
+ellipse{
+/* Ellipse 6 */
+position: absolute;
+width: 251px;
+height: 251px;
+// left: 100px;
+// top: 100px;
+
+// background: rgba(255, 210, 0, 0.4);
+background: rgba(42, 172, 59, 0.4);
+backdrop-filter: blur(30px);
+/* Note: backdrop-filter has minimal browser support */
+}
+
 </style>

@@ -153,11 +153,17 @@ export default class Authorize extends Vue {
   left: 340px;
   color: white;
   font-size: 20px;
+  
+  font-family: "CeraPro-Medium";
 
   border: none;
   background: transparent;
   cursor: pointer;
   outline: none;
+}
+
+.in:hover {
+  font-family: "CeraPro-Black";
 }
 
 .up{
@@ -171,6 +177,10 @@ export default class Authorize extends Vue {
   background: transparent;
   cursor: pointer;
   outline: none;
+}
+
+.up:hover {
+  font-family: "CeraPro-Black";
 }
 
 #windw{
