@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
     <!-- s -->
-    <div>
+    <div class="dash">
         <div>
             <img src="" alt="">
         </div>
@@ -18,19 +18,14 @@
                 </div>
             </div>
         </div>
+        <div class="history">История стримов</div>
         <div class="streams">
-            <div class="streams__left-button">
-                <button></button>
-            </div>
             <template v-for="(item, index) in cards">
                 <StreamCard :num="item.num" :date="item.date" :title="item.title" :key="index"/>
             </template>
-            <div class="streams__right-button">
-                <button></button>
-            </div>
         </div>
-        <div>   
-            <router-link to="/creating">create-new-stream</router-link>
+        <div class="create-stream">   
+            <router-link class="create-stream__text" to="/creating">СОЗДАТЬ СТРИМ</router-link>
         </div>
         
     </div>
@@ -63,12 +58,37 @@ export default class Authorize extends Vue {
     public cards: Array<{}> = [
         {
             num: 13,
-            date: 'hello',
+            date: '13.03.2021',
+            title: 'jopa'
+        },
+        {
+            num: 13,
+            date: '13.03.2021',
+            title: 'jopa'
+        },
+        {
+            num: 13,
+            date: '13.03.2021',
+            title: 'jopa'
+        },
+        {
+            num: 13,
+            date: '13.03.2021',
+            title: 'jopa'
+        },
+        {
+            num: 13,
+            date: '13.03.2021',
+            title: 'jopa'
+        },
+        {
+            num: 13,
+            date: '13.03.2021',
             title: 'jopa'
         },
         {
             num: 14,
-            date: 'vau',
+            date: '26.03.2021',
             title: 'qq'
         }
     ]
@@ -93,6 +113,40 @@ export default class Authorize extends Vue {
 </script>
 
 <style lang="scss">
+
+.create-stream{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30%;
+    margin-bottom: 200px;
+    justify-self: center;
+    width: 600px;
+    height: 93px;
+    background: #FFE34E;
+    box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.2);
+    border-radius: 40px;
+
+    &__text{
+        justify-self: center;
+        text-decoration: none;
+        font-family: "CeraPro-Black";
+        font-style: normal;
+        font-weight: 900;
+        font-size: 48px;
+        line-height: 60px;
+
+        color: #FFFFFF;
+
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+   
+}
+
+.void{
+    height: 200px;
+    
+}
 
 .topbar{
     align-items: center;
@@ -155,7 +209,7 @@ export default class Authorize extends Vue {
 }
 
 .krug{
-    margin-left: 250px;
+
     border-radius: 50%;
     width: 239px;
     height: 239px;
@@ -165,16 +219,31 @@ export default class Authorize extends Vue {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.history{
+    font-family: "CeraPro-Black";
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 63px;
+    color: #7E36F2;
+    opacity: 0.8;
+    padding-top: 40px;
+    margin-right: 30%;
+}
+
 .dashboard{
+    display: flex;
+    justify-content: center;
     background-image: url("../assets/lk.png");
     background-repeat: no-repeat;
     background-size: 100%;
-    height: 1200px;
 }
 
 .streams{
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: min-content min-content min-content;
+    justify-self: center;
+    gap: 20px;
+    padding: 20px 20%;
 }
 
 @font-face {
