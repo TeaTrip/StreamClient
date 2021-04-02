@@ -5,27 +5,21 @@
         <h1 class="h1s">User Story</h1>
         <div>
             <img src="" alt="">
-            <button class="in" @click="isSign = !isSign">sign/in</button>
-            <button class="up" @click="isSign = !isSign">sign/up</button>
+            <button class="in" @click="isSign = true">sign/in</button>
+            <button class="up" @click="isSign = false">sign/up</button>
         </div>
     
-        <div v-if="isSign">
+        <div >
           <form ref='form1' class="form">
           <input type="text" placeholder="e-mail" v-model="login">
-          <input type="password" placeholder="password" v-model="password">
-          </form>
-        </div>
-    
-        <div v-else>
-          <form ref='form2' class="form">
-          <input type="text" placeholder="e-mail" v-model="login">
-          <input type="password" placeholder="6+characters" v-model="password">
+          <input type="password" :placeholder=" isSign ? 'password' : '6+characters' " v-model="password">
           </form>
         </div>
 
       </div>
     </div>
-    <router-link class="rout" tag="ssil" to="/dashboard">войти</router-link>
+    <button class="rout" @click="go">{{isSign ? 'войти' : 'зарегестрироваться'}}</button>
+    <!-- <router-link class="rout" @click="go()" to="/dashboard">войти</router-link> -->
   </div>
 </template>
 
@@ -35,34 +29,38 @@ import router from '@/router';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import axios from 'axios';
 
-console.log('hi', document.cookie);
 
 @Component
 export default class Authorize extends Vue {
     
-    public isSign: boolean = true;
-    public login = '';
-    public password = '';
-    protected go(){
-        this.$store.dispatch('setLogin', this.login);
-        this.$store.dispatch('setPassword', this.password);
-        if (this.isSign){
-          axios.post('http://127.0.0.1:8000/auth/users', {email: this.login, password: this.password})
-          .then((data) => {
-            this.$store.dispatch('setToken', data.data.auth_token)
-            this.$router.push('/dashboard')
-          });
-        }
-        else{
-          axios.post('http://127.0.0.1:8000/auth/users/login', {email: this.login, password: this.password})
-          .then((data) => {
-            this.$store.dispatch('setToken', data.data.auth_token)
-            this.$router.push('/dashboard')
-          });
-        }
-        
-
+  public isSign: boolean = true;
+  public login = '';
+  public password = '';
+  protected go(){
+    console.log('hello');
+    this.$store.dispatch('setLogin', this.login);
+    this.$store.dispatch('setPassword', this.password);
+    if(this.isSign){
+      axios.post('http://127.0.0.1:8000/auth/token/login', {email: this.login, password: this.password})
+      .then((data) => {
+        console.log(data.data);
+        this.$store.dispatch('setToken', data.data.auth_token)
+        this.$router.push('/dashboard')
+      }).catch( () => {window.alert('что-то пошло не так')});
     }
+    else{
+      axios.post('http://127.0.0.1:8000/auth/users', {email: this.login, password: this.password})
+      .then(() => {
+        axios.post('http://127.0.0.1:8000/auth/token/login', {email: this.login, password: this.password})
+        .then((data) => {
+          console.log(data.data);
+          this.$store.dispatch('setToken', data.data.auth_token)
+          this.$router.push('/dashboard')
+        }).catch( () => {window.alert('что-то пошло не так')});
+      }).catch( () => {window.alert('что-то пошло не так')});
+    }
+    
+  }
 }
 </script>
 
@@ -121,7 +119,7 @@ export default class Authorize extends Vue {
 
 .rout {
   display: inline-block;
-  width: 140px;
+  min-width: 140px;
   height: 50px;
   line-height: 50px;
   border-radius: 45px;
@@ -138,6 +136,8 @@ export default class Authorize extends Vue {
   background: white;
   box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
   transition: .3s;
+  border:none;
+  outline: none;
 }
 .rout:hover {
   text-decoration: none;

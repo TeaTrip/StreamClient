@@ -56,58 +56,23 @@ export default class Authorize extends Vue {
     public company = ''
 
     public cards: Array<{}> = [
-        {
-            num: 13,
-            date: '13.03.2021',
-            title: 'jopa'
-        },
-        {
-            num: 13,
-            date: '13.03.2021',
-            title: 'jopa'
-        },
-        {
-            num: 13,
-            date: '13.03.2021',
-            title: 'jopa'
-        },
-        {
-            num: 13,
-            date: '13.03.2021',
-            title: 'jopa'
-        },
-        {
-            num: 13,
-            date: '13.03.2021',
-            title: 'jopa'
-        },
-        {
-            num: 13,
-            date: '13.03.2021',
-            title: 'jopa'
-        },
-        {
-            num: 14,
-            date: '26.03.2021',
-            title: 'qq'
-        }
+       
     ]
     
     protected created(){
         axios.defaults.xsrfCookieName = document.cookie;
         axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-        axios.get('http://127.0.0.1:8000/streams/?token='+this.$store.state.token)
+        axios.get('http://127.0.0.1:8000/streams/?token=' + this.$store.state.token ) //+this.$store.state.token
         .then((data) => {
             for(let item of data.data){
                 this.cards.push({
                     num: item.id,
-                    date: item.date,
+                    date: new Date(item.date).toDateString(),
                     title: item.title
                 })
             }
             console.log(data);
         });
-        console.log('this is')
     }
 }
 </script>

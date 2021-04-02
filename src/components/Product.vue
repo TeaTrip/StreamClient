@@ -4,7 +4,7 @@
       <div class="products__image-cont">
         <img class="products__image" src="../assets/notimage.png">
       </div>
-      <span class="products__description">{{description}}</span>
+      <textarea class="products__description" v-model="description" readonly></textarea>
       <button class="products__button" v-if="isOnStream" @click="$emit('dobs', articul)" >Добавить в корзину {{price}}₽</button>
       <div v-else class="products__price">{{price}}₽</div>
 
@@ -19,7 +19,7 @@ export default class Product extends Vue {
   @Prop() private name!: string;
   @Prop() private description!: string;
   @Prop() private price!: number;
-  @Prop() private isOnStream!: boolean;
+  @Prop({default: false}) private isOnStream!: boolean;
   @Prop() private articul!: string;
 
 }
@@ -27,6 +27,7 @@ export default class Product extends Vue {
 
 <style lang="scss">
 .products{
+  text-align: center !important;
   width: 290px;
   height: 325px;
   background: rgba(255, 227, 78, 0.23);
@@ -87,6 +88,10 @@ export default class Product extends Vue {
   }
 
   &__description{
+    resize: none;
+    text-align: center;
+    background: transparent;
+    border: none;
     font-family: "CeraPro-Regular";
     font-style: normal;
     font-weight: 500;
