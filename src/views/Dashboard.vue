@@ -96,7 +96,7 @@ export default class Authorize extends Vue {
     protected created(){
         axios.defaults.xsrfCookieName = document.cookie;
         axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-        axios.get('http://192.168.193.19:8855/streams/?token='+this.$store.state.token)
+        axios.get('http://127.0.0.1:8000/streams/?token='+this.$store.state.token)
         .then((data) => {
             for(let item of data.data){
                 this.cards.push({

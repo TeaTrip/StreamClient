@@ -47,14 +47,14 @@ export default class Authorize extends Vue {
         this.$store.dispatch('setLogin', this.login);
         this.$store.dispatch('setPassword', this.password);
         if (this.isSign){
-          axios.post('http://192.168.193.19:8855/auth/users', {email: this.login, password: this.password})
+          axios.post('http://127.0.0.1:8000/auth/users', {email: this.login, password: this.password})
           .then((data) => {
             this.$store.dispatch('setToken', data.data.auth_token)
             this.$router.push('/dashboard')
           });
         }
         else{
-          axios.post('http://192.168.193.19:8855/auth/users/login', {email: this.login, password: this.password})
+          axios.post('http://127.0.0.1:8000/auth/users/login', {email: this.login, password: this.password})
           .then((data) => {
             this.$store.dispatch('setToken', data.data.auth_token)
             this.$router.push('/dashboard')

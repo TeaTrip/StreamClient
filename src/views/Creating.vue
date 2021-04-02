@@ -134,14 +134,14 @@ export default class Creating extends Vue {
                 "url": str,
                 "streamKey" : jata.data.streamKey,
                 "title" : this.title,
-                "shop" : 9
+                "shop" : 1
                 },
                 "token" : 123,
                 "goods": this.products
             }
             console.log(obj)
             console.log(JSON.stringify(obj))
-            axios.post("http://192.168.193.19:8855/streams/create", JSON.stringify(obj))
+            axios.post("http://127.0.0.1:8000/streams/create", JSON.stringify(obj))
                 .then((data) => {
                     this.streamId = data.data.stream_id
                     console.log(data);
