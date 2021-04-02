@@ -37,7 +37,6 @@ export default class Authorize extends Vue {
   public login = '';
   public password = '';
   protected go(){
-    console.log('hello');
     this.$store.dispatch('setLogin', this.login);
     this.$store.dispatch('setPassword', this.password);
     if(this.isSign){
@@ -49,7 +48,7 @@ export default class Authorize extends Vue {
       }).catch( () => {window.alert('что-то пошло не так')});
     }
     else{
-      axios.post('http://127.0.0.1:8000/auth/users', {email: this.login, password: this.password})
+      axios.post('http://127.0.0.1:8000/user/join', {email: this.login, password1: this.password, password2: this.password, is_shop: true})
       .then(() => {
         axios.post('http://127.0.0.1:8000/auth/token/login', {email: this.login, password: this.password})
         .then((data) => {
